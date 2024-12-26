@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import DeliveryCard from "../card/DeliveryCard";
 import MainCard from "../card/MainCard";
 
 const property = [
@@ -21,11 +22,14 @@ const property = [
 
 export default function MainSection() {
   return (
-    <section className="h-full">
+    <section className="h-full flex flex-col">
       <div className="flex">
         {property.map((value: any, index: number) => (
           <MainCard key={index} property={value} />
         ))}
+      </div>
+      <div className="flex">
+        <DeliveryCard />
       </div>
     </section>
   );
