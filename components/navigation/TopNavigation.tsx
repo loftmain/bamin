@@ -1,7 +1,131 @@
 "use client";
+
+import clsx from "clsx";
+import { useState } from "react";
+
 export default function TopNavigation() {
+  const [dialog, setDialog] = useState(false);
+
   return (
-    <nav>
+    <nav className="max-w-screen-xl">
+      <div
+        className={clsx(
+          "fixed mt-2 rounded-md overflow-hidden w-full bottom-0 top-0 right-0 left-0 z-20 bg-gray-300/70 transition duration-300",
+          dialog ? "translate-y-0" : "translate-y-full"
+        )}
+      >
+        <div className="bg-white h-screen w-full flex flex-col items-center">
+          {/* dialog button */}
+          <button
+            onClick={() => setDialog(false)}
+            className="flex bg-gray-300 h-1 w-1/12"
+          />
+
+          {/* address config */}
+          <div className="flex w-full items-center justify-center">
+            <h2 className="w-full inline-flex justify-center ml-10 mt-4">
+              주소설정
+            </h2>
+            <p className="text-sm w-1/12">편집</p>
+          </div>
+          {/* input */}
+          <div className="w-full p-4 flex">
+            <div className="bg-gray-300 px-2 rounded-l-md flex justify-center items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              className="w-full bg-gray-300 px-2 py-1 placeholder:text-sm rounded-r-md placeholder:px-2 outline-none"
+              placeholder="지번, 도로명, 건물명으로 검색"
+            />
+          </div>
+          {/* 현재 위치로 설정 */}
+          <div className="flex w-full justify-between">
+            <div className="flex items-center ml-4 gap-2">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
+                  />
+                </svg>
+              </span>
+              <p className="text-sm">현재 위치로 설정</p>
+            </div>
+            <span className="mr-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </span>
+          </div>
+          <div className="h-2 my-4 w-full bg-gray-300" />
+          {/* 우리집 추가 */}
+          <div className="w-full flex">우리집 추가</div>
+          <div className="h-2 my-4 w-full bg-gray-300" />
+          {/* legacy address */}
+          <div className="flex flex-col gap-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index: number) => (
+              <div key={index} className="flex">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                    />
+                  </svg>
+                </span>
+                <p>강원 속초시 먹거리 2길 16-2</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* 스크롤을 만드는 방법: overflow scroll 활용 ! */}
       <div className="flex flex-col w-full justify-center items-center border rounded-b-xl bg-teal-300 pb-1">
         <div className="flex justify-between w-full mt-5 p-2">
           {/* address */}
@@ -9,7 +133,7 @@ export default function TopNavigation() {
             <p className="text-white font-semibold truncate max-w-60">
               경기 안양시 동안구 관평로 정자천로 24-2,관악구 행정복지센터 21층
             </p>
-            <button className="text-white">
+            <button className="text-white" onClick={() => setDialog(true)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
