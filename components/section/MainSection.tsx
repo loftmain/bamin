@@ -1,15 +1,32 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import MainCard from "../card/MainCard";
+
+const property = [
+  {
+    title: "배달",
+    description: "세상은 넓고 맛집은 없다",
+    imageURL: "/images/mainloft.jpg",
+  },
+  {
+    title: "B마트",
+    description: "장보기도 더 빠르게",
+    imageURL: "/images/mainloft.jpg",
+  },
+  {
+    title: "배민스토어",
+    description: "배달은 지금 옵니다",
+    imageURL: "/images/mainloft.jpg",
+  },
+];
+
 export default function MainSection() {
   return (
     <section className="h-full">
       <div className="flex">
-        {[1, 2, 3].map((index: number) => (
-          <div key={index}>Card</div>
+        {property.map((value: any, index: number) => (
+          <MainCard key={index} property={value} />
         ))}
       </div>
-      <div>Big card</div>
-      <div>banner Carousel</div>
-      <div>icon menu horizen</div>
-      <div>우리동네 빠른 배달</div>
     </section>
   );
 }
