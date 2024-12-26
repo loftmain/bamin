@@ -28,9 +28,7 @@ export default function MainSection() {
           <MainCard key={index} property={value} />
         ))}
       </div>
-      <div className="flex">
-        <DeliveryCard />
-      </div>
+      <DeliveryCard />
     </section>
   );
 }
