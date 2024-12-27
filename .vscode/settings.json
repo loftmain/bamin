@@ -1,5 +1,0 @@
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "terminal.integrated.fontFamily": "Fira Code"
-}
