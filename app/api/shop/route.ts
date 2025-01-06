@@ -6,3 +6,8 @@ export async function GET(req: NextRequest) {
   console.log("shopItem >> ", shopItem);
   return NextResponse.json({ message: "error" });
 }
+
+export async function POST(req: NextRequest) {
+  const data = await req.json();
+  return NextResponse.json({ message: "error" });
+}
