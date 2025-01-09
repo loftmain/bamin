@@ -1,5 +1,4 @@
 import prisma from "@/util/prisma";
-import { redirect } from "next/navigation";
 
 export default function upload({
   searchParam,

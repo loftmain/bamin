@@ -1,3 +1,4 @@
+"use client";
 import { Shop } from "@prisma/client";
 
 export default function ShopCard({ shop }: { shop: Shop }) {
