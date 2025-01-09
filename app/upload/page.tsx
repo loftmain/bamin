@@ -9,25 +9,26 @@ export default function upload({
   async function posting(data: FormData) {
     "use server";
 
-    const uploadPost = await prisma.shop.create({
-      data: {
-        title: data.get("title")?.toString() as string,
-        description: data.get("description")?.toString() as string,
-        star: parseInt(data.get("star")?.toString() as string) as number,
-        deliveryFee: data.get("deliveryFee")?.toString() as string,
-        deliveryTime: data.get("deliveryTime")?.toString() as string,
-        minimumOrder: data.get("minimumOrder")?.toString() as string,
-        cardImage: data.get("cardImage")?.toString() as string,
-        coverImage: data.get("coverImage")?.toString() as string,
-        tags: data.get("tag")?.toString() as string,
-      },
+    const success = await fetch(`http://localhost:3000/api/shop`, {
+      method: "post",
+      body: data,
     });
 
-    if (uploadPost) {
-      redirect("/upload?message=success");
+    for (let i = 0; i < 10; i++) {
+      const uploadPost = await prisma.shop.create({
+        data: {
+          title: (data.get("title")?.toString() as string) + i,
+          description: data.get("description")?.toString() as string,
+          star: parseInt(data.get("star")?.toString() as string) as number,
+          deliveryFee: data.get("deliveryFee")?.toString() as string,
+          deliveryTime: data.get("deliveryTime")?.toString() as string,
+          minimumOrder: data.get("minimumOrder")?.toString() as string,
+          cardImage: data.get("cardImage")?.toString() as string,
+          coverImage: data.get("coverImage")?.toString() as string,
+          tags: data.get("tag")?.toString() as string,
+        },
+      });
     }
-
-    return redirect("/upload?message=something is wrong");
   }
   return (
     <form

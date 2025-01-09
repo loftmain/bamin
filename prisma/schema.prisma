@@ -35,13 +35,13 @@ model Shop {
   tags         String
   review       Review[]
   heart        Heart[]
+  menus        Menu[]
   create_at    DateTime @default(now())
   update_at    DateTime @updatedAt
 }
 
 model Heart {
-  id   String @id @default(uuid())
-  text String @db.Text
+  id String @id @default(uuid())
 
   Shop   Shop?   @relation(fields: [shopId], references: [id], onDelete: Cascade)
   shopId String?
@@ -54,6 +54,7 @@ model Heart {
 
 model Review {
   id     String  @id @default(uuid())
+  text   String  @db.Text
   Shop   Shop?   @relation(fields: [shopId], references: [id], onDelete: Cascade)
   shopId String?
   User   User?   @relation(fields: [userId], references: [id])
@@ -61,4 +62,15 @@ model Review {
 
   @@index([shopId])
   @@index([userId])
+}
+
+model Menu {
+  id       String  @id @default(uuid())
+  category String
+  menu     String
+  price    Int
+  Shop     Shop?   @relation(fields: [shopId], references: [id])
+  shopId   String?
+
+  @@index([shopId])
 }
